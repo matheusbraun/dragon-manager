@@ -4,10 +4,15 @@ import { getAllDragons, deleteDragon, updateDragon } from '../../services/api';
 import ListItem from '../../components/ListItem';
 import sortArrayByName from '../../utils/sortArrayByName';
 
+import logo from '../../assets/images/iconfinder_dragon_128px.png';
+
 import './styles.css';
+import { useHistory } from 'react-router-dom';
 
 const Main = () => {
   const [dragons, setDragons] = useState([]);
+
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
@@ -36,12 +41,12 @@ const Main = () => {
   return (
     <div className="list-container">
       <header>
-        <img
-          src="https://cdn4.iconfinder.com/data/icons/game-of-thrones-4/64/game_of_thrones_game_thrones_series_character_avatar_dragon-128.png"
-          alt=""
-        />
+        <img src={logo} alt="" />
         <h1>Dragon Manager</h1>
       </header>
+      <div className="list-container-button">
+        <button onClick={() => history.push('/register')}>Add Dragon</button>
+      </div>
       <ul>
         <li className="list-header">
           <span>Name</span>

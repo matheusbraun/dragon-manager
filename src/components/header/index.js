@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { UserContext } from '../../context/user';
+import logo from '../../assets/images/iconfinder_dragon_64px.png';
+
 import './styles.css';
 
 const Header = () => {
@@ -19,11 +21,7 @@ const Header = () => {
 
   return (
     <div className="topnav">
-      <img
-        src="https://cdn4.iconfinder.com/data/icons/game-of-thrones-4/64/game_of_thrones_game_thrones_series_character_avatar_dragon-64.png"
-        alt="App Logo"
-        onClick={handleLogoClick}
-      />
+      <img src={logo} alt="App Logo" onClick={handleLogoClick} />
       {authenticated && <button onClick={handleLogoutClick}>Log out</button>}
     </div>
   );

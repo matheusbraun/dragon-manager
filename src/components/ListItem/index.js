@@ -6,12 +6,15 @@ import {
   MdCheck,
   MdCancel,
 } from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
 
 import './styles.css';
 
 const ListItem = ({ dragon, deleteDragonCallback, updateDragonCallback }) => {
   const [editValues, setEditValues] = useState({ ...dragon });
   const [editMode, setEditMode] = useState(false);
+
+  const history = useHistory();
 
   const handleOnChange = e => {
     const { name, value } = e.target;
@@ -84,6 +87,7 @@ const ListItem = ({ dragon, deleteDragonCallback, updateDragonCallback }) => {
               size={24}
               color="green"
               className="list-item-icon"
+              onClick={() => history.push(`/details/${dragon.id}`)}
             />
             <MdEdit
               size={24}
