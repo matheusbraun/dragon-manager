@@ -20,11 +20,11 @@ const Header = () => {
   return (
     <div className="topnav">
       <img
-        src="https://cdn4.iconfinder.com/data/icons/game-of-thrones-4/64/game_of_thrones_game_thrones_series_character_avatar_dragon-512.png"
+        src="https://cdn4.iconfinder.com/data/icons/game-of-thrones-4/64/game_of_thrones_game_thrones_series_character_avatar_dragon-64.png"
         alt="App Logo"
         onClick={handleLogoClick}
       />
-      {authenticated && <button onClick={handleLogoutClick}>Sair</button>}
+      {authenticated && <button onClick={handleLogoutClick}>Log out</button>}
     </div>
   );
 };

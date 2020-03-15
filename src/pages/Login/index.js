@@ -7,7 +7,7 @@ import { logIn } from '../../services/api';
 import './styles.css';
 
 const Login = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ username: '', password: '' });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -43,10 +43,10 @@ const Login = () => {
 
   return (
     <div className="login-form-container">
-      <h1 className="login-form-title">Acessar o Sistema</h1>
-      <form className="login-form" onSubmit={handleSubmit} autocomplete="off">
+      <h1 className="login-form-title">Sign In</h1>
+      <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
         <div className="input-block">
-          <label htmlFor="username">Usuário</label>
+          <label htmlFor="username">Username</label>
           <input
             id="username"
             name="username"
@@ -57,7 +57,7 @@ const Login = () => {
           />
         </div>
         <div className="input-block">
-          <label htmlFor="password">Senha</label>
+          <label htmlFor="password">Password</label>
           <input
             id="password"
             name="password"
