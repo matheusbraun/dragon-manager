@@ -34,13 +34,13 @@ export const deleteDragon = async id => {
   return response.data;
 };
 
-export const logIn = ({ user, password }) =>
+export const logIn = ({ username, password }) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (user === 'admin' && password === 'admin') {
-        resolve({ user });
+      if (username === 'admin' && password === 'admin') {
+        resolve({ username });
       } else {
         reject('Usuário ou senha incorretos');
       }
-    }, 300);
+    }, 500);
   });

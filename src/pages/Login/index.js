@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { UserContext } from '../../context/user';
@@ -11,8 +11,12 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const { setUserAuthenticated } = useContext(UserContext);
+  const { authenticated, setUserAuthenticated } = useContext(UserContext);
   const history = useHistory();
+
+  useEffect(() => {
+    if (authenticated) history.replace('/');
+  }, [authenticated, history]);
 
   const handleOnChange = e => {
     const { name, value } = e.target;
@@ -33,31 +37,43 @@ const Login = () => {
       history.push('/');
     } catch (err) {
       setError(err);
-
       setLoading(false);
     }
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="user"
-          disabled={loading}
-          onChange={handleOnChange}
-          required
-        />
-        <input
-          name="password"
-          type="password"
-          disabled={loading}
-          onChange={handleOnChange}
-          required
-        />
-        {error && <span>{error}</span>}
-        <button disabled={loading}>Login</button>
+    <div className="login-form-container">
+      <h1 className="login-form-title">Acessar o Sistema</h1>
+      <form className="login-form" onSubmit={handleSubmit} autocomplete="off">
+        <div className="input-block">
+          <label htmlFor="username">Usuário</label>
+          <input
+            id="username"
+            name="username"
+            disabled={loading}
+            onChange={handleOnChange}
+            value={user.username}
+            required
+          />
+        </div>
+        <div className="input-block">
+          <label htmlFor="password">Senha</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            disabled={loading}
+            onChange={handleOnChange}
+            value={user.password}
+            required
+          />
+        </div>
+        {error && <span className="error-message">{error}</span>}
+        <button type="submit" disabled={loading}>
+          Login
+        </button>
       </form>
-    </>
+    </div>
   );
 };
 
