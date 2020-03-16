@@ -5,7 +5,17 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 O projeto foi feito utilizando [Yarn](https://yarnpkg.com/)
 
 ```
+git clone https://github.com/matheeusbl/teste-sicredi.git
+cd teste-sicredi
+yarn
 yarn start
+```
+
+Caso queira utilizar o npm, delete o arquivo yarn.lock e rode:
+
+```
+npm i
+npm start
 ```
 
 ## Requisitos
@@ -32,5 +42,5 @@ Uma página para cadastro de dragões.
 
 ## Acesso
 
-Usuário: admin
+Usuário: admin  
 Senha: admin
