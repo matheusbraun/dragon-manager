@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <div className="topnav">
       <img src={logo} alt="App Logo" onClick={handleLogoClick} />
-      {authenticated && <button onClick={handleLogoutClick}>Log out</button>}
+      {authenticated && <button onClick={handleLogoutClick}>Sair</button>}
     </div>
   );
 };

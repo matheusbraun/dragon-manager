@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import {
-  MdRemoveRedEye,
-  MdEdit,
-  MdDelete,
-  MdCheck,
-  MdCancel,
-} from 'react-icons/md';
+import { MdRemoveRedEye, MdEdit, MdDelete } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
+
+import ListItemEditMode from '../ListItemEditMode';
 
 import './styles.css';
 
@@ -24,65 +20,35 @@ const ListItem = ({ dragon, deleteDragonCallback, updateDragonCallback }) => {
 
   const handleEditModeClick = () => {
     setEditMode(!editMode);
+    setEditValues({ ...dragon });
   };
 
   const handleUpdateDragon = async () => {
+    const { name, type } = editValues;
+
+    if (!name || !type) return;
+
     await updateDragonCallback(editValues);
 
     setEditMode(false);
   };
 
-  const renderEditMode = () => (
-    <>
-      <input
-        id="name"
-        name="name"
-        onChange={handleOnChange}
-        value={editValues.name}
-        required
-      />
-      <input
-        id="type"
-        name="type"
-        onChange={handleOnChange}
-        value={editValues.type}
-        required
-      />
-    </>
-  );
-
-  const renderEditModeButtons = () => (
-    <>
-      <MdCheck
-        size={24}
-        color="green"
-        className="list-item-icon"
-        onClick={handleUpdateDragon}
-      />
-      <MdCancel
-        size={24}
-        color="red"
-        className="list-item-icon"
-        onClick={handleEditModeClick}
-      />
-    </>
-  );
-
   return (
     <li className="list-item">
       {editMode ? (
-        renderEditMode()
+        <ListItemEditMode
+          handleOnChange={handleOnChange}
+          name={editValues.name}
+          type={editValues.type}
+          handleUpdateDragon={handleUpdateDragon}
+          handleEditModeClick={handleEditModeClick}
+        />
       ) : (
         <>
           <span>{dragon.name}</span>
           <span>{dragon.type}</span>
-        </>
-      )}
-      <div className="list-item-buttons">
-        {editMode ? (
-          renderEditModeButtons()
-        ) : (
-          <>
+
+          <div className="list-item-buttons">
             <MdRemoveRedEye
               size={24}
               color="green"
@@ -101,9 +67,9 @@ const ListItem = ({ dragon, deleteDragonCallback, updateDragonCallback }) => {
               className="list-item-icon"
               onClick={() => deleteDragonCallback(dragon.id)}
             />
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </li>
   );
 };

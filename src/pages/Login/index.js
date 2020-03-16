@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 
 import { UserContext } from '../../context/user';
 import { logIn } from '../../services/api';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import Container from '../../components/Container';
 
 import './styles.css';
 
@@ -42,38 +45,30 @@ const Login = () => {
   };
 
   return (
-    <div className="login-form-container">
-      <h1 className="login-form-title">Sign In</h1>
+    <Container>
+      <h1 className="login-form-title">Acessar o sistema</h1>
       <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
-        <div className="input-block">
-          <label htmlFor="username">Username</label>
-          <input
-            id="username"
-            name="username"
-            disabled={loading}
-            onChange={handleOnChange}
-            value={user.username}
-            required
-          />
-        </div>
-        <div className="input-block">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            disabled={loading}
-            onChange={handleOnChange}
-            value={user.password}
-            required
-          />
-        </div>
+        <Input
+          label="Usuário"
+          name="username"
+          disabled={loading}
+          handleOnChange={handleOnChange}
+          value={user.username}
+          required={true}
+        />
+        <Input
+          label="Senha"
+          name="password"
+          type="password"
+          disabled={loading}
+          handleOnChange={handleOnChange}
+          value={user.password}
+          required={true}
+        />
         {error && <span className="error-message">{error}</span>}
-        <button type="submit" disabled={loading}>
-          Login
-        </button>
+        <Button type="submit" disabled={loading} title="Entrar" />
       </form>
-    </div>
+    </Container>
   );
 };
 

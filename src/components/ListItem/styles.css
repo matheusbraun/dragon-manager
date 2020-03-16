@@ -2,14 +2,6 @@
   width: 33%;
 }
 
-.list-item input {
-  width: 25%;
-  height: 32px;
-  font-size: 14px;
-  color: #666;
-  border-radius: 4px;
-}
-
 .list-item-buttons {
   display: flex;
   justify-content: space-evenly;

@@ -1,57 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { getAllDragons, deleteDragon, updateDragon } from '../../services/api';
 import ListItem from '../../components/ListItem';
 import sortArrayByName from '../../utils/sortArrayByName';
-
-import logo from '../../assets/images/iconfinder_dragon_128px.png';
-
+import SubHeader from '../../components/SubHeader';
+import Button from '../../components/Button';
 import './styles.css';
-import { useHistory } from 'react-router-dom';
 
 const Main = () => {
   const [dragons, setDragons] = useState([]);
 
   const history = useHistory();
 
+  const getDragons = useCallback(async () => {
+    try {
+      const result = await getAllDragons();
+
+      setDragons(result);
+    } catch (err) {
+      history.push('/error');
+    }
+  }, [history]);
+
   useEffect(() => {
     (async () => {
       await getDragons();
     })();
-  }, []);
-
-  const getDragons = async () => {
-    const result = await getAllDragons();
-
-    setDragons(result);
-  };
+  }, [getDragons]);
 
   const handleDeleteDragon = async id => {
-    await deleteDragon(id);
+    try {
+      await deleteDragon(id);
 
-    await getDragons();
+      await getDragons();
+    } catch (err) {
+      history.push('/error');
+    }
   };
 
   const handleUpdateDragon = async payload => {
-    await updateDragon(payload);
+    try {
+      await updateDragon(payload);
 
-    await getDragons();
+      await getDragons();
+    } catch (err) {
+      history.push('/error');
+    }
   };
 
   return (
     <div className="list-container">
-      <header>
-        <img src={logo} alt="" />
-        <h1>Dragon Manager</h1>
-      </header>
+      <SubHeader />
       <div className="list-container-button">
-        <button onClick={() => history.push('/register')}>Add Dragon</button>
+        <Button
+          onClickCallback={() => history.push('/register')}
+          title="Cadastrar Dragão"
+        />
       </div>
       <ul>
         <li className="list-header">
-          <span>Name</span>
-          <span>Type</span>
-          <span>Actions</span>
+          <span>Nome</span>
+          <span>Tipo</span>
+          <span>Ações</span>
         </li>
         {sortArrayByName(dragons).map(dragon => (
           <ListItem

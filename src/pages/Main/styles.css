@@ -4,41 +4,13 @@
   padding: 10px;
 }
 
-.list-container header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.list-container header h1 {
-  font-size: 21px;
-  padding-left: 15px;
-  margin-left: 15px;
-  border-left: 1px solid #ddd;
-}
-
 .list-container .list-container-button {
   display: flex;
   justify-content: flex-end;
 }
 
 .list-container .list-container-button button {
-  width: 150px;
-  border: 0;
-  margin-top: 30px;
-  margin-right: 5px;
-  background: #20b2aa;
-  border-radius: 2px;
-  padding: 10px 10px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.5s;
-}
-
-.list-container .list-container-button button:hover {
-  background: #1a5e63;
+  width: 200px;
 }
 
 .list-container ul {
