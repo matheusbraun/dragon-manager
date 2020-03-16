@@ -6,7 +6,6 @@ import { logIn } from '../../services/api';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Container from '../../components/Container';
-
 import './styles.css';
 
 const Login = () => {
